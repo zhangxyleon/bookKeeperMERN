@@ -1,4 +1,5 @@
 const express = require('express');
+const passport = require('passport');
 const app = express();
 const path = require('path');
 
@@ -25,7 +26,11 @@ const connectDB = async () => {
 	}
 };
 
-module.exports = connectDB;
+connectDB();
+app.use(passport.initialize());
+app.use(express.json());
+app.use('/users', require('./routes/userRoute'));
+app.use('/collections', require('./routes/bookmarkRoute.js'));
 
 app.listen(app.get('port'), (server) => {
 	console.info(`Server listen on port ${app.get('port')}`);
