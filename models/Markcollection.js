@@ -12,6 +12,10 @@ const BookmarkSchema = new mongoose.Schema({
 	tag: {
 		type: String,
 		required: true
+	},
+	date: {
+		type: Date,
+		default: Date.now
 	}
 });
 
