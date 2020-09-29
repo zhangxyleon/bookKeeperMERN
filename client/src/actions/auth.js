@@ -6,7 +6,8 @@ import {
 	AUTH_ERROR,
 	LOGIN_SUCCESS,
 	LOGIN_FAIL,
-	LOGOUT
+	LOGOUT,
+	CLEAR_COLLECTION
 } from '../actions/types';
 import { setAlert } from './alert';
 import setAuthToken from '../utils/setAuthToken';
@@ -38,7 +39,6 @@ export const register = ({ email, password }) => async (dispatch) => {
 	const body = JSON.stringify({ email, password });
 	try {
 		const res = await axios.post('/users/signup', body, config);
-		console.log(res);
 		dispatch({
 			type: REGISTER_SUCCESS,
 			payload: res.data
@@ -62,10 +62,10 @@ export const login = ({ email, password }) => async (dispatch) => {
 	const body = JSON.stringify({ email, password });
 	try {
 		const res = await axios.post('/users/login', body, config);
-		//console.log(res);
+		const payload = { token: res.data.token };
 		dispatch({
 			type: LOGIN_SUCCESS,
-			payload: res.data
+			payload: payload
 		});
 		dispatch(loadUser());
 	} catch (err) {
@@ -79,4 +79,5 @@ export const login = ({ email, password }) => async (dispatch) => {
 //logout
 export const logout = () => (dispatch) => {
 	dispatch({ type: LOGOUT });
+	dispatch({ type: CLEAR_COLLECTION });
 };

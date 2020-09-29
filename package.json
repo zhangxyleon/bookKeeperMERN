@@ -12,6 +12,7 @@
 	"author": "Xiangyu Zhang",
 	"license": "ISC",
 	"dependencies": {
+		"@babel/plugin-transform-react-jsx": "^7.10.4",
 		"config": "^3.3.1",
 		"express": "^4.17.1",
 		"express-validator": "^6.6.1",

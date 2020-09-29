@@ -69,6 +69,9 @@ img {
 .text-primary {
 	color: var(--primary-color);
 }
+.text-green {
+	color: var(--success-color);
+}
 
 .text-dark {
 	color: var(--dark-color);
@@ -357,12 +360,24 @@ button {
   background: none;
   color: var(--primary-color);
   cursor: pointer;
-overflow: hidden;
-	
-white-space: nowrap;
-    text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .sidebutton:hover{
+	opacity: 0.8;
+}
+.tagbutton{
+  border: none;
+  padding: 0;
+  background: none;
+  color: var(--dark-color);
+  cursor: pointer;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.tagbutton:hover{
 	opacity: 0.8;
 }
 
@@ -375,41 +390,86 @@ white-space: nowrap;
 
 .rightcontainer {
 	margin-left: 175px;
-	width: 800x;
+	width: 800px;
 }
 .item{
 	margin: 0 0 20px 0;
+	height:32px;
 }
 .item span{
 	display: inline-block;
 }
-/* .item a{
-	display: inline-block;
-} */
 .item a{
+  padding-top:8px;
   width:250px;
   overflow: hidden; 
   white-space: nowrap;
   text-overflow: ellipsis;
   display:inline-block;
 }
+.item a:hover{
+	opacity: 0.8;
+	border:1px
+}
+
 .item .tag{
-  width:250px;
+  padding-top:8px;
+  width:150px;
   overflow: hidden; 
   white-space: nowrap;
   text-overflow: ellipsis;
   display:inline-block;
 }
-
-
-/* .item p {
-	width:700px;
-	white-space: nowrap;
-	overflow: hidden; 
-	text-overflow: ellipsis;
-	color:var(--success-color);
-} */
-
+.listbutton{
+  border: none;
+  padding: 0;
+  background: none;
+  color: var(--primary-color);
+  cursor: pointer;
+  display:inline;
+}
+.listbutton:hover{
+	opacity: 0.8;
+}
 #info {
 	float: left;
 }
+
+.dropbtn {
+  background-color:  var(--primary-color);
+  color: white;
+  padding: 0px;
+  font-size: 16px;
+  border: none;
+}
+
+.dropdown {
+  /* position: relative; */
+  /* display: inline-block; */
+  float:right;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  /* min-width: 160px; */
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content button {
+  color: black;
+  /* padding: 12px 16px; */
+  text-decoration: none;
+  display: block;
+  border:0px
+
+}
+
+.dropdown-content button:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+
