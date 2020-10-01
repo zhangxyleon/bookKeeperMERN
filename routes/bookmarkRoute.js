@@ -10,14 +10,16 @@ const Markcollection = require('../models/Markcollection');
 //@access private
 router.get('/', authenticate.verifyUser, async (req, res) => {
 	try {
-		//console.log(req.user._id);
+		console.log(req.user._id);
 		const collection = await Markcollection.findOne({ user: req.user._id });
+		//console.log(collection);
 		if (collection) {
 			res.statusCode = 200;
 			res.setHeader('Content-Type', 'application/json');
 			res.json(collection);
 		} else {
 			const new_collection = await Markcollection.create({ user: req.user._id });
+			console.log(new_collection);
 			if (await Markcollection.findById(new_collection.id)) {
 				res.statusCode = 200;
 				res.setHeader('Content-Type', 'application/json');
@@ -39,8 +41,10 @@ router.put('/', authenticate.verifyUser, (req, res) => {
 //@access private
 router.get('/set', authenticate.verifyUser, async (req, res) => {
 	try {
+		console.log(req.user._id);
 		const collection = await Markcollection.findOne({ user: req.user._id });
 		if (collection) {
+			console.log(collection);
 			res.statusCode = 200;
 			res.setHeader('Content-Type', 'application/json');
 			res.json(collection.set);
@@ -55,17 +59,13 @@ router.get('/set', authenticate.verifyUser, async (req, res) => {
 //@des  add a new bookmark to the set
 //@access private
 router.post('/set', authenticate.verifyUser, async (req, res) => {
-	//console.log(req.user._id);
 	try {
 		const collection = await Markcollection.findOne({ user: req.user._id });
-		//console.log(collection.set);
 		if (collection) {
-			//check wether this is an unique book mark()
 			collection.set.push(req.body);
 			await collection.save();
 			res.statusCode = 200;
 			res.setHeader('Content-Type', 'application/json');
-			//console.log(collection.set);
 			res.json(collection.set);
 		} else {
 			return res.status(404).json({ errors: [ { msg: 'collection does not exist' } ] });

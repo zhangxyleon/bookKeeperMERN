@@ -43,6 +43,7 @@ export const register = ({ email, password }) => async (dispatch) => {
 			type: REGISTER_SUCCESS,
 			payload: res.data
 		});
+		dispatch(loadUser());
 	} catch (err) {
 		const msg = JSON.parse(err.request.response);
 		dispatch(setAlert(msg.err.message, 'danger'));
